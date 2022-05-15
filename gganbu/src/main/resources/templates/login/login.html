@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head >
+<meta charset="UTF-8">
+<title>깐부월드::로그인</title>
+<link rel="icon" href="/image/gganbuLogo.png"> <!-- 파비콘 -->
+<link rel="stylesheet" href="/css/login.css" />
+<link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+<header th:replace="/header.html :: main-head"></header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-1">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5">
+	            <!-- Product name-->
+	            <h2 class="fw-bolder2"></h2>
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product reviews-->
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                            	
+                    <form name="loginForm" id="loginForm" action="/login/loginCheck" method="post">
+					    <img src="/image/login3333.jpg">
+						<!-- 아이디 입력 -->
+					    <div class="input-group mt-3 mb-1">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">ID</span>
+						</div>
+						<input id= "id" type="text" name="mem_id" class="form-control"
+							placeholder="Input ID" aria-label="Input ID"
+							aria-describedby="basic-addon1" oninput="checkId()" required>
+						</div>
+						<!-- PW입력 -->
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">PW</span>
+							</div>
+							<input id="pass" type="password" name="mem_pass" class="form-control"
+								placeholder="Input Password" aria-label="Input Password"
+								aria-describedby="basic-addon1" oninput="checkPass()" onkeypress="if(event.keyCode==13){ loginCheck();}" required>
+						</div>
+						<!-- 메시지창 -->
+						<div id="loginMsg" style="visibility:hidden;">아이디 혹은 비밀번호가 일치하지 않습니다</div>
+						<!-- 로그인 버튼 -->
+						<div class="input-group mb-3 bg-transparent" id="btn-top">
+		                    <button type="button" id="loginBtn" class="btn btn-outline-dark mt-auto" onclick="loginCheck()">로그인</button>
+		                </div>
+						    <div class="login-menu">
+						        <a href="/login/forgotId">아이디 찾기</a>
+						        <a href="/login/forgotPass">비밀번호 찾기</a>
+						        <a href="/join/join">회원가입</a>    
+						    </div>
+					</form>
+                            	
+                       </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer-->
+<footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark">
+   
+</footer>
+
+
+</body>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gg.mapper.MgmMapper">
+
+	<update id="MgmQuit" parameterType="String">
+	
+		update gganbu_table set gganbu_relation = 2 where (mem_id=#{mem_id} and mem_id2=#{mem_id2}) or (mem_id=#{mem_id2} and mem_id2=#{mem_id})
+	
+	</update>
+	
+	<update id="MgmAccept" parameterType="String">
+	
+		update gganbu_table set gganbu_relation = 1, gganbu_acceptdate=now() where (mem_id=#{myid} and mem_id2=#{yid}) or (mem_id=#{yid} and mem_id2=#{myid})
+	
+	</update>
+	
+	<delete id="MgmRefuse" parameterType="String">
+	
+		delete from gganbu_table where (mem_id=#{myid} and mem_id2=#{yid}) or (mem_id=#{yid} and mem_id2=#{myid})
+	
+	</delete>
+	
+	<select id="search">
+	
+		select mem_id,mem_name from member_table where mem_name = #{mem_name} and mem_status = 'n'
+	
+	</select>
+	
+	<select id="gglist" parameterType="String" resultType="MgmDTO">
+	
+		select mem_id,mem_id2,gganbu_acceptdate, gganbu_requestdate, gganbu_relation 
+		from gganbu_table where ((mem_id=#{mem_id} or mem_id2=#{mem_id}) and gganbu_relation=1) order by gganbu_acceptdate desc 
+	
+	</select>
+	
+	<select id="ggwait" parameterType="String" resultType="MgmDTO">
+	
+		select mem_id,mem_id2,gganbu_acceptdate, gganbu_requestdate, gganbu_relation 
+		from gganbu_table where ((mem_id=#{mem_id} or mem_id2=#{mem_id}) and gganbu_relation=0) order by gganbu_requestdate desc
+	
+	</select>
+	
+
+</mapper>

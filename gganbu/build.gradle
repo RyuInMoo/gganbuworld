@@ -1,0 +1,48 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.gg'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-mail'          //이메일 의존성 추가 1
+    implementation 'org.springframework:spring-context-support'                 //이메일 의존성 추가 2
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'  //이메일 의존성 추가 3
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'//뷰 단에서 현재 로그인된 사용자의 정보를 가져오기 위해 추가
+    implementation 'org.springframework.boot:spring-boot-starter-security'//스프링 시큐리티를 사용하기 위해 추가
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16' /* Log4JDBC */
+	implementation group: 'org.webjars', name: 'jquery', version: '3.6.0'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.6.3'
+	implementation 'org.webjars:webjars-locator-core'
+	implementation 'org.webjars:sockjs-client:1.0.2'
+	implementation 'org.webjars:stomp-websocket:2.3.3'
+	implementation 'org.webjars:bootstrap:3.3.7'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gg.mapper.SearchMapper">
+
+	<sql id="gganbuColumns">
+		mem_id, mem_id2, gganbu_acceptdate, gganbu_requestdate, gganbu_relation
+	</sql>
+	
+	
+	<sql id="memberColumns">
+		mem_id, mem_pass, mem_name, mem_email1, mem_email2, mem_hp, mem_birth, mem_gender, mem_date, mem_status
+	</sql>
+
+
+	<insert id="insertGganbu" parameterType="String">
+		insert into gganbu_table values(#{myid}, #{yid}, null, now(), 0)
+	</insert>
+
+
+	<select id="gganbuList" parameterType="String" resultType="MgmDTO">
+		select <include refid="gganbuColumns" /> from gganbu_table where mem_id=#{mem_id}
+	</select>  
+	
+	
+	 <select id="search" parameterType="String" resultType="MemberDTO">
+		select <include refid="memberColumns" /> from member_table where mem_id like '%${search}%' and mem_status='N'
+	</select> 
+	
+	
+	<select id="ggCheck" parameterType="String" resultType="_int">
+		SELECT IFNULL(gganbu_relation, 2) AS gganbu_relation 
+		FROM gganbu_table RIGHT OUTER JOIN (SELECT '') AS m_dual ON 
+		(mem_id=#{myid} and mem_id2=#{yid}) OR (mem_id=#{yid} and mem_id2=#{myid})
+	</select>
+	
+	<!-- <select id="search" parameterType="String" resultType="SearchDTO">
+		select member_table.mem_id,  member_table.mem_name, member_table.mem_date, member_table.mem_status, gganbu_table.mem_id2, 
+		gganbu_table.gganbu_requestdate, gganbu_table.gganbu_acceptdate, gganbu_table.gganbu_relation  
+		from member_table left join gganbu_table on member_table.mem_id = gganbu_table.mem_id 
+		where (member_table.mem_id  like '%${search}%')  and member_table.mem_status='N'
+	</select -->
+	
+
+</mapper>

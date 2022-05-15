@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head >
+<meta charset="UTF-8">
+<title>깐부월드</title>
+<link rel="icon" href="/image/gganbuLogo.png"> <!-- 파비콘 -->
+<link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+<header th:replace="/header.html :: main-head"></header>
+<!-- Section-->
+<section class="py-3">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="/image/mini_room.png" alt="...">
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <div th:if="${session.loginUser != null}">
+                            <h5 th:text="|${session.loginUser.mem_name}님|" class="fw-bolder"></h5>
+                            </div>
+                            <!-- Product reviews-->
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <th:block th:if="${session.loginUser != null}">
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" onclick="openWindowPop()">내 미니홈피 가기</a></div>
+                    </div>
+                    </th:block>
+                    <th:block th:unless="${session.loginUser != null}">
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" onclick="moveLoginPage()">내 미니홈피 가기</a></div>
+                    </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer-->
+<footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark"></footer>
+
+<div class="nav-item" th:if = "${session.loginUser != null}">
+	<script>
+	function openWindowPop(){
+		
+	    var url = 'http://localhost:9100/mini/pop_main/[[${session.loginUser.mem_id}]]';
+		var features = "scrollbars=yes,width=1300,height=700, resizable=no"; 
+	    var windowTargetName = "world";
+		window.open(url, windowTargetName, features);
+	}
+	</script>
+</div>
+
+<script>
+function moveLoginPage() {
+	alert("로그인이 필요합니다\n로그인페이지로 이동합니다!");
+	window.location.href="/login/login";
+}
+</script>
+
+</body>
+</html>

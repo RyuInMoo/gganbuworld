@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=chrome" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini homepage</title>
+    <script defer src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" th:href="@{/css/main_pop.css}" />
+    <script defer type="text/javascript" th:src="@{/js/ajax.js}"></script>
+    <script defer type="text/javascript" th:src="@{/js/pop_main.js}"></script>
+    <script defer type="text/javascript" th:src="@{/js/gganbucomment.js}"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script> 
+    <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> 
+  </head>
+  <body id="test">
+    <div class="background">
+      <main>
+        <section class="profile-section">
+          <div class="profile-dot">
+            <div class="profile-paper">
+              <div class="profile-wrap">
+                <!-- <div class="visitor-counter">
+                  <p class="text-today">103</p>
+                  <p class="text-total">13042</p>
+                </div> -->
+                <div class="profile">
+                  <!--  <p class="text-today-is">
+                    TODAY IS .. <i>⛱</i><span> 그리움</span>
+                  </p>  -->
+                  <img
+                    class="profile-img"
+                    src="/image/basic.jpg"
+                    alt="profile"
+                  />
+                  <div class="desc-wrap">
+                    <p class="text-desc2">
+                      사이좋은 사람들 <br>
+                      깐부월드<br>
+                      ( ﾉ ﾟｰﾟ)ﾉ＼(ﾟｰﾟ＼)
+                              </p>
+                   <!--  <a class="link-history" href="#">EDIT</a> -->
+                  </div>
+                  <div class="info-wrap">
+                    <a class="info-name"  th:text="|${mem_id}(${hostInfo.mem_name})|"></a>
+                        <ul class="hide2">
+                        <th:block th:if="${hostInfo.mem_id != session.loginUser.mem_id}">
+	                        <th:block th:if="${ggRelationCheck == 2}">
+	                            <li><a th:attr="onclick=|requestGganbu('/requestGganbu/${hostInfo.mem_id}')|">깐부 맺기</a></li>
+	                        </th:block> 
+	                      <th:block th:if="${ggRelationCheck == 0}">
+	                            <li>깐부 대기중..</li>
+	                        </th:block> 
+	                        <th:block th:if="${ggRelationCheck == 1}">
+	                            <li>우린 깐부사이 :D</li>
+	                        </th:block>
+	                    </th:block> 
+                        </ul>
+                    <p class="text-email" th:text="|${hostInfo.mem_email1}@${hostInfo.mem_email2}|"></p>
+                    <!-- <img src="./source/img/b+.png" alt="b+" />
+                    <img src="./source/img/dotol.jpeg" alt="dotol" /> -->
+                  </div>
+                </div>
+                <div class="holder hd1"></div>
+                <div class="holder hd2"></div>
+                <div class="holder hd3"></div>
+                <div class="holder hd4"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="main-section">
+          <div class="main-dot">
+            <div class="main-paper">
+              <div class="main-wrap">
+                <div class="title-wrap">
+                  <p class="title title1" th:text="|${hostInfo.mem_name}님의 미니홈피|"></p>
+                  <!-- <div class="link-wrap">
+                    <a href="#"><span>일촌맺기</span></a>
+                    <a href="#"><span>팬되기</span></a>
+                    <p><a href="#">https://www.cyowrld.com/happy</a></p>
+                  </div> -->
+                </div>
+                <div id="change" class="main ">
+                <div >
+                  <!-- <div class="post-wrap"> -->
+                    <!-- <div class="recent-post">
+                      <h2>최근 게시물</h2>
+                      <p class="text-video">
+                        맘에드는 아이템은 소망상자에 넣어보세요
+                      </p>
+                      <p class="text-board">내 개성은 미니미로</p>
+                      <p class="text-gallery">스킨, 메뉴효과 예약기능 좋아</p>
+                      <p class="text-photo">더욱 편리해진 사용중 아이템</p>
+                    </div> -->
+                    <!-- <div class="menu-table">
+                      <table>
+                        <tr>
+                          <td>쥬크박스<a href="#">0/12</a></td>
+                          <td class="new-post">사진첩<a href="#">10/881</a></td>
+                        </tr>
+                        <tr>
+                          <td class="new-post">방명록<a href="#">22/233</a></td>
+                          <td>즐겨찾기<a href="#">0/3</a></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </table>
+                    </div> -->
+                  <!-- </div> -->
+                  <div class="mini-room-wrap">
+                    <div class="nav-room-wrap">
+                      <div class="nav-room">
+                        <!-- <p>미니라이프</p> -->
+                        <p class="checked">미니룸</p>
+                        <!-- <p>미니라이프</p> -->
+                      </div>
+                      <p>깐부월드</p>
+                    </div>
+                    <img
+                      class="img-miniroom"
+                      src="/image/mini_room2.gif"
+                      alt="mini-room"
+                    />
+                    <!-- <div class="info-miniroom-wrap">
+                      <div class="info-wrap-1">
+                        <p>미니룸답글달기[15]</p>
+                        <p>함께사진찍기</p>
+                      </div>
+                      <div class="info-wrap-2">
+                        <p>미니룸수[16]</p>
+                        <p>깜짝링크[0]</p>
+                      </div>
+                    </div> -->
+                  </div>
+                  <br>
+                    <section class="gganbu-comment">
+                    
+                       <form id="insertORupdateForm">
+                       <input type="hidden" name="mem_id" th:value="${mem_id}">
+                       <input type="hidden" name="mem_id2" th:value="${session.loginUser.mem_id}">
+                       <th:block th:each="params, paramsStat : ${list}"  th:if="${#strings.equals(paramsStat.size, paramsStat.count)}">
+                       <h2><span th:text="${paramsStat.size}"></span>개의 깐부평이 있어요.
+                           <!-- <button th:if="${not #lists.isEmpty(list)}" class="btn_del" onclick="deleteGganbuComment()">삭제</button> -->
+                       </h2>
+                       </th:block>
+                       <th:block th:if="${#lists.isEmpty(list)}">
+                       <h2>0개의 깐부평이 있어요.</h2>
+                       </th:block>
+                       <div th:if="${gganbuCheck}==1">
+                        <div class="friends-say-section">
+                          <label for="friends-say">GGANBUs say</label>
+                          <input id="gganbu_comment_content" name="gganbu_comment_content" type="text" placeholder="깐부와 나누고 싶은 이야기를 남겨보세요~!" onkeypress="if(event.keyCode==13){insertORupdateGganbuComment('/mini/pop_main/insertORupdateGganbuComment/${mem_id}');}" maxlength="20">
+                          <button type="button" th:attr="onclick=|insertORupdateGganbuComment('/mini/pop_main/insertORupdateGganbuComment/${mem_id}')|">등록</button>
+                          <div id="GBCMsg" class="Msg"></div>
+                        </div>
+                       </div>
+                       <div th:unless="${gganbuCheck}==1">
+                       <div class="friends-say-section">
+                          <label for="friends-say">GGANBUs say</label>
+                          <input type="text" placeholder="깐부평은 깐부만 남길수 있어요!" disabled>
+                        </div>
+                        </div>
+                       </form>
+                        <!-- 
+                          <input type="checkbox">
+                        </div> -->
+                        <!-- <div>
+                          <label>내가 쓴 깐부평</label>
+                          <input type="text" value="자네가 속여서 구슬 가져간건 말이되고?" readonly>
+                          <button>갱신</button>
+                        </div> -->
+                        
+	                        <th:block th:if="${not #lists.isEmpty(list)}" th:each="params, paramsStat : ${list}">
+		                        <form id="gganbucommentForm"> 
+		                        <div class="friends-say-list">
+		                            <p class="GBCcontainer">
+		                             <span id="content" th:text="${params.gganbu_comment_content}"></span>
+		                             <span id="writer" th:text="| [ ${params.mem_id2} ] |"></span>
+		                             <span id="iday" th:if="${params.gganbu_comment_updatedate == NULL}" th:text="${params.gganbu_comment_date}">등록일</span>
+		                             <span id="uday" th:if="${params.gganbu_comment_updatedate != NULL}" th:text="${params.gganbu_comment_updatedate}">수정일</span>
+		                             <!-- <span id="iday" th:text="${params.gganbu_comment_date}"></span>
+		                             <span id="uday" th:text="${params.gganbu_comment_updatedate}"></span> -->
+		                             <button id="btnDel" type="button" th:if="${#strings.equals(mem_id, session.loginUser.mem_id)} or ${#strings.equals(params.mem_id2, session.loginUser.mem_id)}" th:attr="onclick=|deleteGganbuComment('/mini/pop_main/deleteGganBuComment/${id}/${params.mem_id2}')|">삭제</button>
+		                             <!-- <input id="Btn" class="checkDel" type="checkbox"> -->
+		                            </p>
+		                        </div>
+		                        </form>
+	                        </th:block>
+                        
+                    </section>
+                </div>
+                </div>
+              </div>
+              <div class="menu-item mi-1 menu-checked"><a th:attr="onclick=|location.href='/mini/pop_main/${id}'|">홈</a></div>
+              <div class="menu-item mi-2"><a th:attr="onclick=|acyncMovePage('/mini/profile/profile/${id}')|">프로필</a></div>
+              <div class="menu-item mi-3"><a th:attr="onclick=|acyncMovePage('/mini/diary/diary/${id}')|">다이어리</a></div>
+              <div class="menu-item mi-4"><a th:attr="onclick=|acyncMovePage('/mini/photo/photo_list/${id}')|">사진첩</a></div>
+              <!-- <div class="menu-item mi-5">게시판</div> -->
+              <div class="menu-item mi-5"><a th:attr="onclick=|acyncMovePage('/mini/guest/guest/${id}')|">방명록</a></div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <aside>
+        <!-- <button class="button-activate">친구추천</button><button>팬</button>
+        <div class="recommend-img-wrap">
+          <img
+            src="./source/img/스크린샷 2021-11-19 오후 8.51.17.png"
+            alt=""
+          />
+          <img
+            src="./source/img/스크린샷 2021-11-19 오후 8.51.50.png"
+            alt=""
+          />
+          <img
+            src="./source/img/스크린샷 2021-11-19 오후 8.52.08.png"
+            alt=""
+          />
+          <img
+            src="./source/img/스크린샷 2021-11-19 오후 8.52.24.png"
+            alt=""
+          />
+        </div>
+        <div class="aside-table">
+          <table>
+            <tr>
+              <td>댓글 <span>0</span></td>
+              <td>스크랩 <span>331</span></td>
+            </tr>
+            <tr>
+              <td>앱스 <span>551</span></td>
+              <td>소망상자 <span>10</span></td>
+            </tr>
+          </table>
+        </div>
+        <p class="recommend-item"><span>추천아이템</span>추천BGM</p> -->
+      </aside>
+    </div>
+    
+   <script>
+    // html dom 이 다 로딩된 후 실행된다.
+    $(document).ready(function(){
+    	$(".info-wrap ul").css("display","none");
+        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+        $(".info-wrap>a").click(function(){
+            var submenu = $(this).next("ul");
+ 
+            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+            if( submenu.is(":visible") ){
+                submenu.slideUp();
+            }else{
+                submenu.slideDown();
+            }
+        });
+    });
+    </script> 
+
+  </body>
+</html>

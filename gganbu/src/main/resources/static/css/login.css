@@ -1,0 +1,38 @@
+/* 로그인 */
+
+
+.fw-bolder2{
+	margin-left: 150px;
+	font-weight: bold;
+}
+#loginForm {
+	width: 280px;
+}
+
+.mt-1 {
+  margin-top: 3rem !important;
+}
+
+#loginBtn {
+	width:100%;
+}
+
+#btn-top {
+	margin-top: 2px;
+}
+
+#loginMsg {
+	color: #FF1493;
+}
+
+.login-menu a{
+	text-decoration:none;
+	color: #0080c0;
+	border-right: 1px solid #c0c0c0; 
+	padding-right: 5px;
+}
+.login-menu a:last-child{
+	border-right: none;
+}
+
+/*끝*/

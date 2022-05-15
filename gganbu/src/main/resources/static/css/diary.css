@@ -1,0 +1,125 @@
+@charset "UTF-8";
+.text-center {
+	display:flex;
+	justify-content:flex-end; 
+}
+.updel{
+	display:flex;
+	justify-content:flex-end; 
+	color:orange;
+	font-size:11pt;
+}
+.updel>a {
+	padding: 0 5px 0 5px;
+}
+.updel a:first-child {
+	border-right:1.5px solid black;
+}
+.updel a:hover{
+	font-weight: bold;
+	cursor:pointer;
+} 
+.diary-date {
+	background:#EEEEEE;
+	padding:7px 0;
+	font-size:11pt;
+	font-weight:bold;
+	display:flex;
+	justify-content:space-between;
+}
+.diary-date2{
+	background:#999;
+	padding:7px 0;
+	font-size:11pt;
+	font-weight:bold;
+	display:flex;
+	justify-content:space-between;
+}
+#rightdate {
+	text-align:right;
+	display:inline-block;	
+}
+#diary-date2 {
+	font-size:12pt;
+}
+.diarybtn {
+	width:100px;
+	/* display:flex;
+	justify-content:flex-end; */
+	border:1px solid red;
+}
+.btn-sm {
+	padding:2px 5px;
+	margin-bottom:10px;
+}
+.btn-set {
+	margin-left:8px;
+}
+.card-body2 {
+	 flex: 1 1 auto;
+	 padding: 1rem 0.5rem;  
+	 font-size:12pt;
+	 line-height:25px;
+}
+#diary_write, #diary_update {
+	width: 100%;
+    height: 15em;
+    resize: none;
+    line-height:25px;
+}
+.card-body3 {
+	flex: 1 1 auto;
+  	padding: 0.5rem 0.5rem 0 0.5rem;
+}
+#dateSelect {
+	width:100px;
+}
+.infoMsg {
+	display:flex;
+	justify-content:center;
+	margin-top:20px;
+}
+.showList{
+	margin-top:5px;
+	padding:5px;
+	display:flex;
+	justify-content:center;
+	text-decoration:none;
+	color:black;
+}
+.showList:hover {
+	background-color:linen;
+	color:black;
+	font-weight:bold;
+}
+
+/* 다이어리 리스트, 수정 후 보여지는 글에서 글 쓸 때 엔터까지 쳤던거 그대로 보여지게 함, 
+이거 안주면 엔터쳐서 글 써도 다 옆으로 붙어서 출력됨. */
+.diaryListContent { 
+	white-space:pre-wrap;
+}
+
+Form[name="diaryForm"] {
+	margin-top:20px;
+}
+Form[name="diaryUpdateForm"], Form[name="diaryWriteForm"] {
+	margin-top:40px;
+}
+.write-btn {
+	float:right;
+	margin-left:10px;
+}
+.badge {
+	background:#4bb6d6;
+}
+#checkbox {
+	zoom: 1.2;
+	margin:0px !important;
+}
+#checkbox + span {
+	margin-bottom:5px;
+}
+.paging-center {
+	text-align:center;
+}
+

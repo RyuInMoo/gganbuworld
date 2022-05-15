@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>깐부월드::깐부찾기</title>
+<link rel="icon" href="/image/gganbuLogo.png"> <!-- 파비콘 -->
+<link rel="stylesheet" href="/css/main.css" />
+<script  src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script  src="/js/search.js"></script>
+</head>
+<body>
+<header th:replace="/header.html :: main-head"></header>
+
+<section class="py-5">
+	<div class="container">
+		<h2 class="pageTitle">깐부 검색</h2>
+		<form name="searchForm" id="searchForm" action="/searchWord" method="post">
+			<div id="searchArea">
+				<!-- <label>검색</label> -->
+				<input class="form-control form-control-lg" type="text" name="search" id="search" placeholder="ID로만 검색 가능">
+				<button type="submit" class="btn btn-outline-dark">검색</button>
+			</div>
+		</form> <!-- th:attr="onclick=|searchWord('/searchWord')|" -->
+		<div id="searchContent">
+			<form  name="searchResultForm" id="searchResultForm"  method="post">
+				<table class="table mgm">
+				    <thead class="thead-light">
+				        <tr>
+							<th width="20%">ID(이름)</th>
+							<th>미니홈피</th>
+							<th>깐부 맺기</th>
+					    </tr>
+				    </thead>
+				    <tbody>
+					    <tr th:each="list : ${gglist}" > <!-- 검색결과 --><!-- th:if="${#strings.equals(mem_id, session.loginUser.mem_id)" -->
+							<td th:text="|${list.mem_id}(${list.mem_name})|"></td>
+							<td><a th:attr="onclick=|openWindowPop('/mini/pop_main/${list.mem_id}')|">미니홈피구경하기</a></td>
+							<td ><!-- th:if="${list.gganbu_relation} == null or ${list.gganbu_relation} == 2" -->
+								<a th:if="${list.mem_id} != ${session.loginUser.mem_id}" th:attr="onclick=|requestGganbu('/requestGganbu/${list.mem_id}')|">깐부 맺기</a>
+								<span th:unless="${list.mem_id} != ${session.loginUser.mem_id}">-</span>
+							</td><!-- <a th:attr="onclick=|requestGganbu('/requestGganbu')|"> -->
+						<!-- 	<td th:if="${list.gganbu_relation} == 1">
+								<a>우리깐부잖아</a>
+							</td>
+							<td th:if="${list.gganbu_relation} == 0">
+								<a>까ㅏㄴ부대기중</a>
+							</td> -->
+							
+						</tr>
+					  <!--   <tr th:each="list : ${list}" th:unless="${#strings.equals(mem_id, session.loginUser.mem_id)"> 검색결과
+							<td th:text="${list.mem_id}"></td>
+							<td>미니홈피구경하기</td>
+							<td><a th:attr="onclick=|requestGganbu('/requestGganbu/${mem_id}')|">깐부 신청하기</a></td><a th:attr="onclick=|requestGganbu('/requestGganbu')|">
+						</tr> -->
+				    </tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</section>
+
+<footer th:replace="/footer.html :: main-footer" class="py-5 bg-dark"></footer>
+<script>
+function openWindowPop(url){
+	var features = "scrollbars=yes,width=1300,height=700, resizable=no"; 
+    var windowTargetName = "world";
+	window.open(url, windowTargetName, features);
+}
+</script>
+</body>
+</html>
